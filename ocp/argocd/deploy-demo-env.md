@@ -155,6 +155,8 @@
     ~~~
 19. Create the TriggerBinding for reading data received by a webhook and pass it to the Pipeline
 For gitlab EDIT body.head_commit to body.commits[0].id in gitrevision
+and body.repository.url to body.repository.git_http_url
+
     ~~~sh
     oc -n reversewords-ci-21-10 create -f github-triggerbinding.yaml
     ~~~
