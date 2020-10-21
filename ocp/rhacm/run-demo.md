@@ -44,7 +44,7 @@
     #    apps.open-cluster-management.io/webhook-secret: reverse-words-webhook-secret
     spec:
       type: Git
-      pathname: https://github.com/mvazquezc/reverse-words-cicd.git
+      pathname: https://github.com/emiliobucha/reverse-words-cicd.git
     EOF
     ~~~
 3. Create the PlacementRules for our development and production clusters
@@ -221,7 +221,7 @@ We are going to use WebHooks in order to run Pipelines automatically when new co
 
     > **NOTE**: Every Git server has its own properties, but basically you want to provide the ingress url for our webhook and when the Git server should send the hook. E.g: push events, PR events, etc.
 
-    1. Go to your application repository on GitHub, eg: https://github.com/mvazquezc/reverse-words
+    1. Go to your application repository on GitHub, eg: https://github.com/emiliobucha/reverse-words
     2. Click on `Settings` -> `Webhooks`
     3. Create the following `Hook`
        1. `Payload URL`: Output of command `oc -n reversewords-ci get route reversewords-webhook -o jsonpath='https://{.spec.host}'`
@@ -233,7 +233,7 @@ We are going to use WebHooks in order to run Pipelines automatically when new co
        6. Click on `Add webhook`
 2. Now, we will configure the second webhook to react to changes on the cicd repository
 
-    1. Go to your cicd repository on GitHub, eg: https://github.com/mvazquezc/reverse-words-cicd
+    1. Go to your cicd repository on GitHub, eg: https://github.com/emiliobucha/reverse-words-cicd
     2. Click on `Settings` -> `Webhooks`
     3. Create the following `Hook`
        1. `Payload URL`: Output of command `oc -n open-cluster-management get route multicluster-operators-subscription -o jsonpath='https://{.spec.host}'/webhook` 
@@ -340,7 +340,7 @@ We are going to follow the second approach.
     metadata:
       name: reversewords-repository
     spec:
-      url: https://github.com/mvazquezc/reverse-words.git
+      url: https://github.com/emiliobucha/reverse-words.git
       ref: main
       frequency: 1m
       type: github

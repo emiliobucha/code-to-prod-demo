@@ -27,8 +27,8 @@
 
     ~~~sh
     mkdir -p /var/tmp/code-to-prod-demo/
-    git clone git@github.com:mvazquezc/reverse-words.git /var/tmp/code-to-prod-demo/reverse-words
-    git clone git@github.com:mvazquezc/reverse-words-cicd.git /var/tmp/code-to-prod-demo/reverse-words-cicd
+    git clone git@github.com:emiliobucha/reverse-words.git /var/tmp/code-to-prod-demo/reverse-words
+    git clone git@github.com:emiliobucha/reverse-words-cicd.git /var/tmp/code-to-prod-demo/reverse-words-cicd
     ~~~
 2. Go to the reverse-words-cicd repo and checkout the CI branch which contains our Tekton manifests
 
@@ -92,10 +92,10 @@
     > **NOTE**: You need to use your forks address in the substitutions below
 
     ~~~sh
-    sed -i "s|<reversewords_git_repo>|https://github.com/mvazquezc/reverse-words|" build-pipeline.yaml
+    sed -i "s|<reversewords_git_repo>|https://github.com/emiliobucha/reverse-words|" build-pipeline.yaml
     sed -i "s|<reversewords_quay_repo>|quay.io/mavazque/tekton-reversewords|" build-pipeline.yaml
-    sed -i "s|<golang_package>|github.com/mvazquezc/reverse-words|" build-pipeline.yaml
-    sed -i "s|<imageBuilder_sourcerepo>|mvazquezc/reverse-words-cicd|" build-pipeline.yaml
+    sed -i "s|<golang_package>|github.com/emiliobucha/reverse-words|" build-pipeline.yaml
+    sed -i "s|<imageBuilder_sourcerepo>|emiliobucha/reverse-words-cicd|" build-pipeline.yaml
     ~~~
 13. Create the Build Pipeline definition which will be used to execute the previous tasks in an specific order with specific parameters
 
@@ -117,9 +117,9 @@
     > **NOTE**: You need to use your forks address/quay account in the substitutions below
 
     ~~~sh
-    sed -i "s|<reversewords_cicd_git_repo>|https://github.com/mvazquezc/reverse-words-cicd|" promote-to-prod-pipeline.yaml
+    sed -i "s|<reversewords_cicd_git_repo>|https://github.com/emiliobucha/reverse-words-cicd|" promote-to-prod-pipeline.yaml
     sed -i "s|<reversewords_quay_repo>|quay.io/mavazque/tekton-reversewords|" promote-to-prod-pipeline.yaml
-    sed -i "s|<imageBuilder_sourcerepo>|mvazquezc/reverse-words-cicd|" promote-to-prod-pipeline.yaml
+    sed -i "s|<imageBuilder_sourcerepo>|emiliobucha/reverse-words-cicd|" promote-to-prod-pipeline.yaml
     sed -i "s|<stage_deployment_file_path>|./deployment.yaml|" promote-to-prod-pipeline.yaml
     ~~~
 17. Create the Promoter Pipeline definition which will be used to execute the previous tasks in an specific order with specific parameters
